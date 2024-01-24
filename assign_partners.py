@@ -44,7 +44,7 @@ students = data[2]
 win = tkinter.Tk()
 win.title('Lab ' + argv[1])
 
-tables = seating_selection.irregular_seating_selection(ROOM_INFO, students)
+tables = seating_selection.seating_selection(ROOM_INFO, students)
 
 if not ROOM[1]:
     seating_display.irregular_seating_display(ROOM_INFO, tables, win, REVERSE)

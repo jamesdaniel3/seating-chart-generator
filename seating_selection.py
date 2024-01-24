@@ -1,68 +1,7 @@
 import random
 import math
 
-
-def standard_seating_selection(students_list, room_info):
-    """
-    This function will return a twice-nested list of tables where each table is a list of student pairs and
-    each student pair is a list of two students for students in rooms with standard setups (ex. OLS018)
-
-    :param students_list: a list of the names of students in the lab
-    :param room_info: a tuple containing of the following format:
-                        (columns of tables, number of tables, (table width, table height), max student per table)
-    :return: a twice-nested list of tables where each table is a list of student pairs and each student pair
-                        is a list of two students
-    """
-    pairings = []  # list of partners. i.e. [[partner 1, partner 2], ...]
-    num_tables = room_info[1]
-    seats_per_table = room_info[3]
-    num_students = len(students_list)
-    total_seats = num_tables * seats_per_table
-
-    while len(students_list) > 1:
-        first = random.randrange(0, len(students_list))
-        pairings.append([students_list[first]])
-        students_list = students_list[:first] + students_list[first + 1:]
-        second = random.randrange(0, len(students_list))
-        pairings[-1].append(students_list[second])
-        students_list = students_list[:second] + students_list[second + 1:]
-
-
-    # find out how many tables are needed to house all students
-    while True:
-        if total_seats - seats_per_table > num_students:
-            total_seats -= seats_per_table
-        else:
-            break
-
-    tables_needed = math.ceil(total_seats/seats_per_table)
-
-    # evenly distribute student pairs across needed tables
-    resulting_tables = [[] for _ in range(room_info[1])]
-    current_table = 0
-    while len(pairings) > 0:
-        if current_table < tables_needed:
-            resulting_tables[current_table].append(pairings[0])
-            pairings.pop(0)
-            current_table += 1
-        else:
-            current_table = 0
-
-    # account for odd number of students
-    for table in resulting_tables:
-        student_count = 0
-        for pair in table:
-            student_count += len(pair)
-        if student_count < seats_per_table and student_count != 0:
-            if len(students_list):
-                table[0].append(students_list[0])
-
-
-    resulting_tables = center_student_seating(resulting_tables, room_info)
-    return resulting_tables
-
-
-def irregular_seating_selection(room_info, students_list):
+def seating_selection(room_info, students_list):
     """
     This function takes in a nested list where each sublist is a row of tables and each value in the sublist is the
     number of students the row can hold and a list of students in a lab and returns a random seating arrangement for the
@@ -120,8 +59,7 @@ def center_student_seating(seating_dict, room_info):
                         is a list of two students
     :param room_info: a tuple containing of the following format:
                         (columns of tables, number of tables, (table width, table height), max student per table)
-    :return: a twice-nested list of tables where each table is a list of student pairs and each student pair
-                        is a list of two students
+    :return:
     """
 
     num_tables = len(room_info) * len(room_info[0]) # assumes that there will be at least one desk, needs a rename
