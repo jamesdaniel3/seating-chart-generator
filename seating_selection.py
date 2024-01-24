@@ -64,9 +64,12 @@ def standard_seating_selection(students_list, room_info):
 
 def irregular_seating_selection(num_students_by_row, students_list):
     """
+    This function takes in a nested list where each sublist is a row of tables and each value in the sublist is the
+    number of students the row can hold and a list of students in a lab and returns a random seating arrangement for the
+    students.
 
-
-    :param num_students_by_row:
+    :param num_students_by_row: a nested list of where each sublist represents a row of desks and each value is the
+                                number of students a given desk can hold
     :param students_list: a list of the names of students in the lab
     :return: a nested list of tables where each element is a list of students
     """
