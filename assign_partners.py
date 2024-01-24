@@ -14,7 +14,7 @@ STANDARD_ROOMS_INFO = {"ols018": (5, 15, (200, 200), 6),
               "mech215": (4, 4, (200, 500), 6)}
 
 # irregular_rooms_info : {room : (columns or tables, array of TOTAL students per row), ... },
-IRREGULAR_ROOMS_INFO = {"ols009": [[6, 6], [7,7], [7,8], [8,9], [6,4], [4]]}
+IRREGULAR_ROOMS_INFO = {"ols009": [[6, 6], [7,7], [7,8], [8,9], [6,4], [4] ] }
 
 REVERSE = False
 
