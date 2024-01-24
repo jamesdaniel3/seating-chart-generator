@@ -65,6 +65,7 @@ def irregular_seating_display(room_info, tables, window, reverse):
     for i in range(num_rows):
         row = tkinter.Frame(window)
         num_desks = len(room_info[i])
+
         for j in range(num_desks):
             desk_count += 1
             canvas_width = IMAGE_WIDTH / num_desks
@@ -73,15 +74,21 @@ def irregular_seating_display(room_info, tables, window, reverse):
             can.create_text(canvas_width/2, 25, fill='black', text='Table ' + str(desk_count), font=HEADER)
             next_y = 50
             names_at_table = ""
+            student_groups = []
             for pair in tables[desk_count - 1]:
                 temp_stu = pair.split(" ")
                 student = temp_stu[1] + " " + temp_stu[0] + "      "
-                if get_text_size(names_at_table + student, BODY) < canvas_width - 100:
+                if get_text_size(names_at_table + student, BODY) < canvas_width - 125:
                     names_at_table += student
                 else:
-                    can.create_text(10, next_y, fill='black', text=names_at_table.replace('_', ' '), font=BODY, anchor='w')
+                    student_groups.append(names_at_table)
                     names_at_table = student
-                    next_y += 18
+
+            if len(student_groups) != 0:
+                group_spacing = canvas_height / len(student_groups) *.5
+                for each in student_groups:
+                    can.create_text(10, next_y, fill='black', text=each, font=BODY, anchor='w')
+                    next_y += group_spacing
             can.create_text(10, next_y, fill='black', text=names_at_table.replace('_', ' '), font=BODY, anchor='w')
             can.pack(side=tkinter.LEFT)
         row.pack()
