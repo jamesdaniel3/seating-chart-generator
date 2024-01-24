@@ -28,26 +28,34 @@ def seating_selection(room_info, students_list):
 
             resulting_tables.append(choices)
 
-    resulting_tables = ensure_a_pair(resulting_tables)
+
     if standard_room:
+        resulting_tables = split_last_two_tables(resulting_tables)
         resulting_tables = center_student_seating(resulting_tables, num_students_by_row)
 
     return resulting_tables
 
 
-def ensure_a_pair(student_groups):
+def split_last_two_tables(student_groups, ):
     """
-    This function is only intended to be used with irregular rooms.
-    This function checks that no tables have 1 student, and will move a student to a table that has 1 student if found.
+    This function splits the students in the last two tables that have students evenly between the two. Currently, has
+    no ability to check that it is not overloading a table which is a concern for irregular rooms. Also, the spacing comes
+    out weird in standard rooms.
 
     :param student_groups: a nested list of tables where each element is a list of students at the table
     :return: the length of a given string in pixels
     """
-    for x in range(len(student_groups) - 1, -1, -1):
-        if len(student_groups[x]) == 1:
-            student_to_be_moved = student_groups[x - 1].pop()
-            student_groups[x].append(student_to_be_moved)
+    students = []
+    for x in range(len(student_groups) - 1, 0, -1):
+        if len(student_groups[x]) > 0 and len(student_groups[x-1]) > 0:
+            students.extend(student_groups[x])
+            students.extend(student_groups[x-1])
+
+            student_groups[x] = students[0: len(students) // 2]
+            student_groups[x - 1] = students[len(students) // 2:]
+
             return student_groups
+
     return student_groups
 
 def center_student_seating(seating_dict, room_info):
