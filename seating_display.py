@@ -18,20 +18,20 @@ def seating_display(room_info, tables, window, reverse):
     :param reverse: if this parameter is True, the rows in the image will be reversed
     """
 
-    room_info = room_info[0]  # needs a rename
+    irregular_room = room_info[1]
+    rows_of_desks = room_info[0]  # needs a rename
     if reverse:
         tables.reverse()
-        room_info.reverse()
+        rows_of_desks.reverse()
 
 
-    irregular_room = room_info[1]
 
-    num_rows = len(room_info)
+    num_rows = len(rows_of_desks)
     desk_count = 0
 
     for i in range(num_rows):
         row = tkinter.Frame(window)
-        num_desks = len(room_info[i])
+        num_desks = len(rows_of_desks[i])
 
         for j in range(num_desks):
             desk_count += 1
