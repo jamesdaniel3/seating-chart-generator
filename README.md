@@ -16,7 +16,7 @@ and type the following command.
 NOTE: Replace 1xx with your lab section, valid lab sections are 100-105. 
 
 This command should bring up an image of the seating chart, based on the room your lab section
-is in. The optional reverse flag reverses the rows that appear in the seating chart to allow for the 
+is in. The optional reverse flag reverses the order of the rows (top row becomes bottom) that appear in the seating chart to allow for the 
 seating chart to be displayed in different areas of the room and still make sense.
 
 Random names were generated here: http://random-name-generator.info/index.php?n=100&g=1&st=2
