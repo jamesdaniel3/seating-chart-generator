@@ -28,24 +28,26 @@ def seating_selection(room_info, students_list):
 
             resulting_tables.append(choices)
 
+    resulting_tables = split_last_two_tables(resulting_tables, room_info)
 
     if standard_room:
-        resulting_tables = split_last_two_tables(resulting_tables)
         resulting_tables = center_student_seating(resulting_tables, num_students_by_row)
 
     return resulting_tables
 
 
-def split_last_two_tables(student_groups, ):
+def split_last_two_tables(student_groups, room_info):
     """
     This function splits the students in the last two tables that have students evenly between the two. Currently, has
     no ability to check that it is not overloading a table which is a concern for irregular rooms. Also, the spacing comes
     out weird in standard rooms.
 
     :param student_groups: a nested list of tables where each element is a list of students at the table
+    :param room_info:
     :return: the length of a given string in pixels
     """
     students = []
+    desk_list = room_info[0]
     for x in range(len(student_groups) - 1, 0, -1):
         if len(student_groups[x]) > 0 and len(student_groups[x-1]) > 0:
             students.extend(student_groups[x])
@@ -53,6 +55,11 @@ def split_last_two_tables(student_groups, ):
 
             student_groups[x] = students[0: len(students) // 2]
             student_groups[x - 1] = students[len(students) // 2:]
+
+            no_nest_desk_list = unnest_desk_list(desk_list)
+            while len(student_groups[x]) > no_nest_desk_list[x]:
+                student = student_groups[x].pop()
+                student_groups[x-1].append(student)
 
             return student_groups
 
@@ -102,5 +109,13 @@ def center_student_seating(seating_dict, room_info):
         full_rows.append([])
 
     return full_rows
+
+
+def unnest_desk_list(nested_desk_list):
+    list_with_no_nest = []
+    for row in nested_desk_list:
+        for desk in row:
+            list_with_no_nest.append(desk)
+    return list_with_no_nest
 
 
