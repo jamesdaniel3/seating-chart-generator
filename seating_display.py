@@ -48,8 +48,7 @@ def irregular_seating_display(room_info, tables, window, reverse):
     """
     This function puts together the image for an irregular lab's seating chart
 
-    :param room_info: a tuple containing of the following format:
-                        (number of columns, a list containing the TOTAL number of students per row)
+    :param room_info:
     :param tables: a nested list of tables where each table is a list of student names
     :param window: the window object created by tkinter
     :param reverse: if this parameter is True, the rows in the image will be reversed
@@ -57,6 +56,8 @@ def irregular_seating_display(room_info, tables, window, reverse):
 
     if reverse:
         tables.reverse()
+
+    room_info = room_info[0] # needs a rename
 
     num_rows = len(room_info)
     desk_count = 0
