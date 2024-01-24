@@ -18,10 +18,12 @@ def seating_display(room_info, tables, window, reverse):
     :param reverse: if this parameter is True, the rows in the image will be reversed
     """
 
+    room_info = room_info[0]  # needs a rename
     if reverse:
         tables.reverse()
+        room_info.reverse()
 
-    room_info = room_info[0] # needs a rename
+
     irregular_room = room_info[1]
 
     num_rows = len(room_info)
