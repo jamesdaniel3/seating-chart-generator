@@ -74,12 +74,13 @@ win = tkinter.Tk()
 win.title('Lab ' + argv[1])
 
 tables = seating_selection.seating_selection(current_room_info, students)
+seating_display.irregular_seating_display(current_room_info, tables, win, REVERSE)
 
-if not ROOM[1]:
-    seating_display.irregular_seating_display(current_room_info, tables, win, REVERSE)
-
-else:
-    seating_display.irregular_seating_display(current_room_info, tables, win, REVERSE)
+# if not ROOM[1]:
+#     seating_display.irregular_seating_display(current_room_info, tables, win, REVERSE)
+#
+# else:
+#     seating_display.irregular_seating_display(current_room_info, tables, win, REVERSE)
 
 win.mainloop()
 
