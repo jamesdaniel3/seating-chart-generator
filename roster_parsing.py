@@ -3,15 +3,14 @@ from sys import argv
 ROOM = ""
 ROOM_INFO = ()
 
-def read_csv(sect_dict, rooms_info, irregular_rooms_info):
+def read_csv(sect_dict, rooms_info):
     """
     This function reads the lab roster csv file stored in the directory and outputs a list containing a lab's room,
     it's information, and a list containing all the students in the lab.
 
     :param sect_dict: a dictionary of the form { section number: room }
-    :param rooms_info: a dictionary of the form
-                    { room: (columns of tables, number of tables, (table width, table height), max student per table) }
-    :param irregular_rooms_info: a dictionary of the form {room : (columns or tables, array of TOTAL students per row) }
+    :param rooms_info: a dictionary containing the information about all rooms seating and whether each is standard,
+                        see ROOM_INFO in assign_partners.py
     :return: a list containing a lab's room, it's information, and a list containing all the students in the lab.
     """
     global ROOM, ROOM_INFO
@@ -32,10 +31,7 @@ def read_csv(sect_dict, rooms_info, irregular_rooms_info):
                 quit()
             else:
                 ROOM = sect_dict[int(argv[1])]
-                if ROOM in irregular_rooms_info:
-                    ROOM_INFO = irregular_rooms_info[ROOM]
-                else:
-                    ROOM_INFO = rooms_info[ROOM]
+                ROOM_INFO = rooms_info[ROOM]
 
             for line in roster:
                 line = line.strip().split(',')
