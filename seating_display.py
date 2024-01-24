@@ -57,6 +57,8 @@ def seating_display(room_info, tables, window, reverse):
 
             if len(student_groups) != 0:
                 group_spacing = canvas_height / len(student_groups) *.4
+                if group_spacing > 50:
+                    group_spacing = 50
                 for each in student_groups:
                     can.create_text(10, next_y, fill='black', text=each, font=BODY, anchor='w')
                     next_y += group_spacing
