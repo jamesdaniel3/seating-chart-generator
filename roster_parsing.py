@@ -3,11 +3,12 @@ from sys import argv
 ROOM = ""
 ROOM_INFO = ()
 
-def read_csv(sect_dict, rooms_info):
+def read_csv(roster_file, sect_dict, rooms_info):
     """
     This function reads the lab roster csv file stored in the directory and outputs a list containing a lab's room,
     it's information, and a list containing all the students in the lab.
 
+    :param roster_file: a string containing the name of the file that holds all the students 
     :param sect_dict: a dictionary of the form { section number: room }
     :param rooms_info: a dictionary containing the information about all rooms seating and whether each is standard,
                         see ROOM_INFO in assign_partners.py
@@ -21,7 +22,7 @@ def read_csv(sect_dict, rooms_info):
         quit()
 
     try:
-        with open('generated_students.csv', 'r') as roster:
+        with open(roster_file, 'r') as roster:
             lab_nums = roster.readline().strip().split(',')
             lab_ind = 0
             while lab_ind < len(lab_nums) and argv[1] not in lab_nums[lab_ind]:

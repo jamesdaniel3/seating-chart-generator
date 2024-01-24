@@ -7,10 +7,11 @@ import section_and_room_info
 
 SECT_DICT = section_and_room_info.SECT_DICT
 ROOM_DICT = section_and_room_info.ROOM_DICT
+roster_file = 'generated_students.csv'
 
 REVERSE = len(argv) >= 3 and (argv[2] == "-r" or argv[2] == "--reverse")
 
-data = roster_parsing.read_csv(SECT_DICT, ROOM_DICT)
+data = roster_parsing.read_csv(roster_file, SECT_DICT, ROOM_DICT)
 
 ROOM = data[0]
 current_room_info = data[1]
