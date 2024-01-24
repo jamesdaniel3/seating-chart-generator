@@ -17,7 +17,7 @@ STANDARD_ROOMS_INFO is a dictionary of rooms where each value is a tuple of the 
 (columns of tables, number of tables, (table width, table height), max student per table)
 """
 
-STANDARD_ROOMS_INFO = {"ols018": (5, 15, (200, 200), 6),
+STANDARD_ROOMS_INFO = {"ols018": [[6,6,6,6,6,6], [6,6,6,6,6,6], [6,6,6,6,6,6]],
               "ols005": (2, 8, (400, 200), 6),
               "mech215": (4, 4, (200, 500), 6)}
 
