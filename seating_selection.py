@@ -112,6 +112,12 @@ def center_student_seating(seating_dict, room_info):
 
 
 def unnest_desk_list(nested_desk_list):
+    """
+    This function is meant to take a desk list like those in the ROOM_INFO dicts and break it into a single list
+    where each value represents the number of students that a desk can hold.
+    :param nested_desk_list: a desk list like those in the ROOM_INFO dicts
+    :return: a list where each value represents the number of students that a desk can hold.
+    """
     list_with_no_nest = []
     for row in nested_desk_list:
         for desk in row:
