@@ -1,4 +1,3 @@
-from math import ceil
 import tkinter
 
 HEADER = ('Arial', '16', 'bold', 'underline')
