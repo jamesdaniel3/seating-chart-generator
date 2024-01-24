@@ -7,44 +7,7 @@ IMAGE_HEIGHT = 800
 IMAGE_WIDTH = 1200
 
 
-def standard_seating_display(room_info, tables, window, reverse):
-    """
-    This function puts together the image for a standard lab's seating chart.
-
-    :param room_info: a tuple containing of the following format:
-                        (columns of tables, number of tables, (table width, table height), max student per table)
-    :param tables: a twice-nested list of tables where each table is a list of student pairs and each student pair
-                        is a list of two students
-    :param window: the window object created by tkinter
-    :param reverse: if this parameter is True, the rows in the image will be reversed
-    """
-    # specs for current room
-    room_width = room_info[0]
-    num_tables = room_info[1]
-    canvas_width = room_info[2][0]
-    canvas_height = room_info[2][1]
-
-    if reverse:
-        tables.reverse()
-
-    for i in range(ceil(num_tables / room_width)):
-        row = tkinter.Frame(window)
-        for j in range(room_width):
-            can = tkinter.Canvas(row, bg='white', width=canvas_width, height=canvas_height, highlightbackground='black')
-            can.create_text(canvas_width/2, 25, fill='black', text='Table ' + str(i * room_width + j + 1), font=HEADER)
-            next_y = 50
-            for pair in tables[i * room_width + j]:
-                for student in pair:
-                    temp_stu = student.split(" ")
-                    student = temp_stu[1] + " " + temp_stu[0]
-                    can.create_text(10, next_y, fill='black', text=student.replace('_', ' '), font=BODY, anchor='w')
-                    next_y += 18
-                next_y += 18
-            can.pack(side=tkinter.LEFT)
-        row.pack()
-
-
-def irregular_seating_display(room_info, tables, window, reverse):
+def seating_display(room_info, tables, window, reverse):
     """
     This function puts together the image for an irregular lab's seating chart
 
