@@ -72,6 +72,7 @@ def irregular_seating_selection(room_info, students_list):
     :param students_list: a list of the names of students in the lab
     :return: a nested list of tables where each element is a list of students
     """
+    standard_room = room_info[1]
     resulting_tables = []
     num_students_by_row = room_info[0]
     for row in num_students_by_row:
@@ -87,7 +88,8 @@ def irregular_seating_selection(room_info, students_list):
             resulting_tables.append(choices)
 
     resulting_tables = ensure_a_pair(resulting_tables)
-    #resulting_tables = center_student_seating(resulting_tables, num_students_by_row)
+    if standard_room:
+        resulting_tables = center_student_seating(resulting_tables, num_students_by_row)
 
     return resulting_tables
 
@@ -122,8 +124,8 @@ def center_student_seating(seating_dict, room_info):
                         is a list of two students
     """
 
-    num_tables = room_info[1]
-    tables_per_row = room_info[0]
+    num_tables = len(room_info) * len(room_info[0]) # assumes that there will be at least one desk, needs a rename
+    tables_per_row = len(room_info[0])
     tables_with_students = [i for i in seating_dict if i != []]
 
     # Center last row of students
