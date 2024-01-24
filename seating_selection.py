@@ -7,7 +7,9 @@ def seating_selection(room_info, students_list):
     number of students the row can hold and a list of students in a lab and returns a random seating arrangement for the
     students.
 
-    :param room_info:
+    :param room_info: a tuple containing a given rooms information where the first value is a nested list where each
+                        sublist represents a row in the room and each value contains the number of students that can
+                        fit at a table and the second value is a boolean value that indicates whether the room is standard
     :param students_list: a list of the names of students in the lab
     :return: a nested list of tables where each element is a list of students
     """
@@ -55,14 +57,15 @@ def center_student_seating(seating_dict, room_info):
     columns, there will always be 1 more empty column on the right of the room than the left. If there is only one row
     of students, the students will be placed in the second row of the room.
 
-    :param seating_dict: a twice-nested list of tables where each table is a list of student pairs and each student pair
-                        is a list of two students
-    :param room_info: a tuple containing of the following format:
-                        (columns of tables, number of tables, (table width, table height), max student per table)
-    :return:
+    :param seating_dict: a nested list of tables where each element is a list of students
+    :param room_info: a tuple containing a given rooms information where the first value is a nested list where each
+                        sublist represents a row in the room and each value contains the number of students that can
+                        fit at a table and the second value is a boolean value that indicates whether the room is standard
+    :return: a nested list of tables where each element is a list of students, but the last row of tables that contains
+                        students has been centered
     """
 
-    num_tables = len(room_info) * len(room_info[0]) # assumes that there will be at least one desk, needs a rename
+    num_tables = len(room_info) * len(room_info[0]) # assumes that there will be at least one desk
     tables_per_row = len(room_info[0])
     tables_with_students = [i for i in seating_dict if i != []]
 

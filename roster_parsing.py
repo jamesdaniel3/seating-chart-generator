@@ -9,7 +9,8 @@ def read_csv(sect_dict, rooms_info):
     it's information, and a list containing all the students in the lab.
 
     :param sect_dict: a dictionary of the form { section number: room }
-    :param rooms_info:
+    :param rooms_info: a dictionary containing the information about all rooms seating and whether each is standard,
+                        see ROOM_INFO in assign_partners.py
     :return: a list containing a lab's room, it's information, and a list containing all the students in the lab.
     """
     global ROOM, ROOM_INFO
