@@ -16,7 +16,7 @@ def standard_seating_display(room_info, tables, window, reverse):
     :param tables: a twice-nested list of tables where each table is a list of student pairs and each student pair
                         is a list of two students
     :param window: the window object created by tkinter
-    :param reverse:
+    :param reverse: if this parameter is True, the rows in the image will be reversed
     """
     # specs for current room
     room_width = room_info[0]
@@ -52,7 +52,7 @@ def irregular_seating_display(room_info, tables, window, reverse):
                         (number of columns, a list containing the TOTAL number of students per row)
     :param tables: a nested list of tables where each table is a list of student names
     :param window: the window object created by tkinter
-    :param reverse:
+    :param reverse: if this parameter is True, the rows in the image will be reversed
     """
 
     if reverse:
