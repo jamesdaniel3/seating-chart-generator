@@ -58,6 +58,7 @@ def irregular_seating_display(room_info, tables, window, reverse):
         tables.reverse()
 
     room_info = room_info[0] # needs a rename
+    irregular_room = room_info[1]
 
     num_rows = len(room_info)
     desk_count = 0
@@ -75,17 +76,22 @@ def irregular_seating_display(room_info, tables, window, reverse):
             next_y = 50
             names_at_table = ""
             student_groups = []
-            for pair in tables[desk_count - 1]:
-                temp_stu = pair.split(" ")
+
+            maximum_text_length = canvas_width - 125
+            if irregular_room:
+                maximum_text_length = canvas_width / 2
+
+            for person in tables[desk_count - 1]:
+                temp_stu = person.split(" ")
                 student = temp_stu[1] + " " + temp_stu[0] + "      "
-                if get_text_size(names_at_table + student, BODY) < canvas_width - 125:
+                if get_text_size(names_at_table + student, BODY) < maximum_text_length:
                     names_at_table += student
                 else:
                     student_groups.append(names_at_table)
                     names_at_table = student
 
             if len(student_groups) != 0:
-                group_spacing = canvas_height / len(student_groups) *.5
+                group_spacing = canvas_height / len(student_groups) *.4
                 for each in student_groups:
                     can.create_text(10, next_y, fill='black', text=each, font=BODY, anchor='w')
                     next_y += group_spacing
