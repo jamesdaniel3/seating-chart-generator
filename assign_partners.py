@@ -8,11 +8,7 @@ import section_and_room_info
 SECT_DICT = section_and_room_info.SECT_DICT
 ROOM_DICT = section_and_room_info.ROOM_DICT
 
-
-REVERSE = False
-
-if len(argv) >= 3 and (argv[2] == "-r" or argv[2] == "--reverse"):
-    REVERSE = True
+REVERSE = len(argv) >= 3 and (argv[2] == "-r" or argv[2] == "--reverse")
 
 data = roster_parsing.read_csv(SECT_DICT, ROOM_DICT)
 
