@@ -75,7 +75,7 @@ def irregular_seating_display(room_info, tables, window, reverse):
             for pair in tables[desk_count - 1]:
                 temp_stu = pair.split(" ")
                 student = temp_stu[1] + " " + temp_stu[0] + "      "
-                if get_text_size(names_at_table + student, BODY) < 300:
+                if get_text_size(names_at_table + student, BODY) < canvas_width - 100:
                     names_at_table += student
                 else:
                     can.create_text(10, next_y, fill='black', text=names_at_table.replace('_', ' '), font=BODY, anchor='w')
