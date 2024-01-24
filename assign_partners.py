@@ -17,7 +17,7 @@ STANDARD_ROOMS_INFO is a dictionary of rooms where each value is a tuple of the 
 (columns of tables, number of tables, (table width, table height), max student per table)
 """
 
-STANDARD_ROOMS_INFO = {"ols018": [[6,6,6,6,6,6], [6,6,6,6,6,6], [6,6,6,6,6,6]],
+STANDARD_ROOMS_INFO = {"ols018": [[6,6,6,6,6], [6,6,6,6,6], [6,6,6,6,6]],
               "ols005": (2, 8, (400, 200), 6),
               "mech215": (4, 4, (200, 500), 6)}
 
@@ -41,13 +41,13 @@ students = data[2]
 win = tkinter.Tk()
 win.title('Lab ' + argv[1])
 
+tables = seating_selection.irregular_seating_selection(ROOM_INFO, students)
+
 if ROOM in IRREGULAR_ROOMS_INFO:
-    tables = seating_selection.irregular_seating_selection(ROOM_INFO, students)
     seating_display.irregular_seating_display(ROOM_INFO, tables, win, REVERSE)
 
 else:
-    tables = seating_selection.standard_seating_selection(students, ROOM_INFO)
-    seating_display.standard_seating_display(ROOM_INFO, tables, win, REVERSE)
+    seating_display.irregular_seating_display(ROOM_INFO, tables, win, REVERSE)
 
 win.mainloop()
 
