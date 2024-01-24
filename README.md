@@ -8,7 +8,7 @@ In the future, I will likely have additions to make to this code that I will be 
 
 # To Run:
 This program only runs from the command line. In order to run it, cd to the directory
-that this script is in, make sure the lab_roster_s24.csv file is in the same directory,
+that this script is in, make sure the generated_students.csv file is in the same directory,
 and type the following command.
 
 > python3 assign_partners.py 1xx < --reverse or -r >
