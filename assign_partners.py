@@ -4,18 +4,6 @@ import seating_selection
 import seating_display
 import roster_parsing
 
-"""
-This program only runs from the command line. In order to run it, cd to the directory
-that this script is in, make sure the lab_roster_s24.csv file is in the same directory,
-and type the following command.
-
-> python3 assign_partners.py 1xx 
-
-NOTE: Replace 1xx with your lab section (i.e. 101).
-
-This command should bring up an image of the seating chart, based on the room your lab section
-is in if you have any difficulties, please don't hesitate to reach out in the #lab-materials Discord channel!
-"""
 
 # sect_dict : {section number : room, ...}
 SECT_DICT = {100: "ols018", 101: "ols018", 102: "ols018", 103: "ols018", 104: "ols009", 105: "ols018"}
