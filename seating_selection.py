@@ -23,7 +23,8 @@ def seating_selection(room_info, students_list):
                 if len(students_list) == 0:
                     break
                 student_num = random.randrange(0, len(students_list))
-                choices.append(students_list[student_num])
+                clean_student_name = students_list[student_num].replace("_", " ")
+                choices.append(clean_student_name)
                 del students_list[student_num]
 
             resulting_tables.append(choices)
