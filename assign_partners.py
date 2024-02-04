@@ -3,10 +3,7 @@ import tkinter
 import seating_selection
 import seating_display
 import roster_parsing
-import section_and_room_info
 
-SECT_DICT = section_and_room_info.SECT_DICT
-ROOM_DICT = section_and_room_info.ROOM_DICT
 roster_file = 'generated_students.csv'
 
 REVERSE = len(argv) >= 3 and (argv[2] == "-r" or argv[2] == "--reverse")
