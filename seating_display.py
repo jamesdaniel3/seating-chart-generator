@@ -19,11 +19,10 @@ def seating_display(room_info, tables, window, reverse):
     """
 
     irregular_room = room_info[1]
-    rows_of_desks = room_info[0]  # needs a rename
+    rows_of_desks = room_info[0]
     if reverse:
         tables.reverse()
         rows_of_desks.reverse()
-
 
 
     num_rows = len(rows_of_desks)
