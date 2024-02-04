@@ -1,21 +1,21 @@
 from sys import argv
+import section_and_room_info
 
 ROOM = ""
 ROOM_INFO = ()
 
-def read_csv(roster_file, sect_dict, rooms_info):
+def read_csv(roster_file):
     """
     This function reads the lab roster csv file stored in the directory and outputs a list containing a lab's room,
     it's information, and a list containing all the students in the lab.
 
-    :param roster_file: a string containing the name of the file that holds all the students 
-    :param sect_dict: a dictionary of the form { section number: room }
-    :param rooms_info: a dictionary containing the information about all rooms seating and whether each is standard,
-                        see ROOM_INFO in assign_partners.py
+    :param roster_file: a string containing the name of the file that holds all the students
     :return: a list containing a lab's room, it's information, and a list containing all the students in the lab.
     """
     global ROOM, ROOM_INFO
     students = []
+    sect_dict = section_and_room_info.SECT_DICT # a dictionary of the form { section number: room }
+    rooms_info = section_and_room_info.ROOM_DICT # a dictionary containing the information about all rooms seating and whether each is standard, see ROOM_INFO in assign_partners.py
 
     if len(argv) < 2:
         print('ERROR: Please enter a section number and room number.')

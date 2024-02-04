@@ -11,7 +11,7 @@ roster_file = 'generated_students.csv'
 
 REVERSE = len(argv) >= 3 and (argv[2] == "-r" or argv[2] == "--reverse")
 
-data = roster_parsing.read_csv(roster_file, SECT_DICT, ROOM_DICT)
+data = roster_parsing.read_csv(roster_file)
 
 ROOM = data[0]
 current_room_info = data[1]
