@@ -38,7 +38,7 @@ def read_csv(roster_file):
                 line = line.strip().split(',')
                 if line[lab_ind].strip():
                     data = line[lab_ind].strip().split(';')
-                    students.append(data[0].replace(' ', '_') + ' ' + data[1].replace(' ', '_'))
+                    students.append(data[1].replace(' ', '_') + ' ' + data[0].replace(' ', '_'))
 
     except FileNotFoundError:
         print('ERROR: Lab roster not found.')
