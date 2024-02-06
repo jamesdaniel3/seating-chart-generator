@@ -37,8 +37,6 @@ def seating_selection(room_info, students_list):
         resulting_tables = center_student_seating(resulting_tables, num_students_by_row)
         resulting_tables = create_student_pairs(resulting_tables)
 
-    print(resulting_tables)
-
     return resulting_tables
 
 
@@ -156,5 +154,3 @@ def create_student_pairs(nested_desk_list):
             desk.pop(0)
         nested_desk_list_paired.append(pairs)
     return nested_desk_list_paired
-
-
