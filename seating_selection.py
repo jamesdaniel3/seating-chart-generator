@@ -33,6 +33,9 @@ def seating_selection(room_info, students_list):
 
     if standard_room:
         resulting_tables = center_student_seating(resulting_tables, num_students_by_row)
+        resulting_tables = create_student_pairs(resulting_tables)
+
+    print(resulting_tables)
 
     return resulting_tables
 
@@ -124,5 +127,20 @@ def unnest_desk_list(nested_desk_list):
         for desk in row:
             list_with_no_nest.append(desk)
     return list_with_no_nest
+
+def create_student_pairs(nested_desk_list):
+    nested_desk_list_paired = []
+    for desk in nested_desk_list:
+        pairs = []
+        while len(desk) >= 2:
+            pair = [desk[0], desk[1]]
+            desk.pop(0)
+            desk.pop(0)
+            pairs.append(pair)
+        if len(desk) == 1:
+            pairs[-1].append(desk[0])
+            desk.pop(0)
+        nested_desk_list_paired.append(pairs)
+    return nested_desk_list_paired
 
 
