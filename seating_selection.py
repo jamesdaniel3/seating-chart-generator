@@ -11,7 +11,9 @@ def seating_selection(room_info, students_list):
                         sublist represents a row in the room and each value contains the number of students that can
                         fit at a table and the second value is a boolean value that indicates whether the room is standard
     :param students_list: a list of the names of students in the lab
-    :return: a nested list of tables where each element is a list of students
+    :return: for irregular rooms: a nested list where each sublist contains the group of students that should be sitting at
+                        a given table; for regular rooms: a twice-nested list where each sublist represents a table and
+                        contains sublists that represent the groupings of students at each table. This list is also centered
     """
     standard_room = room_info[1]
     resulting_tables = []
@@ -47,7 +49,9 @@ def split_last_two_tables(student_groups, room_info):
     out weird in standard rooms.
 
     :param student_groups: a nested list of tables where each element is a list of students at the table
-    :param room_info:
+    :param room_info: a tuple containing a given rooms information where the first value is a nested list where each
+                        sublist represents a row in the room and each value contains the number of students that can
+                        fit at a table and the second value is a boolean value that indicates whether the room is standard
     :return: the length of a given string in pixels
     """
     students = []
@@ -129,6 +133,14 @@ def unnest_desk_list(nested_desk_list):
     return list_with_no_nest
 
 def create_student_pairs(nested_desk_list):
+    """
+    This function adds a level of nesting to the tables created in seating selection that puts students with the student
+    or students that they should be working with. It is only intended to be used for regular spacing as students will
+    not be listed with their partner in irregular rooms.
+    :param nested_desk_list: a nested list of tables where each element is a list of students
+    :return: a twice-nested list of tables where each element is list containing 1-3 sub lists, and each sublist contains
+                        2-3 students that should be paired
+    """
     nested_desk_list_paired = []
     for desk in nested_desk_list:
         pairs = []
