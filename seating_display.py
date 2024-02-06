@@ -5,8 +5,68 @@ BODY = ('Arial', '12')
 IMAGE_HEIGHT = 800
 IMAGE_WIDTH = 1200
 
-
 def seating_display(room_info, tables, window, reverse):
+    standard_room = room_info[1]
+    print(room_info)
+    if standard_room:
+        standard_seating_display(room_info, tables, window, reverse)
+    else:
+        irregular_seating_display(room_info, tables, window, reverse)
+
+
+
+def standard_seating_display(room_info, tables, window, reverse):
+    rows_of_desks = room_info[0]
+    if reverse:
+        tables.reverse()
+        rows_of_desks.reverse()
+
+    num_rows = len(rows_of_desks)
+    desk_count = 0
+
+    for i in range(num_rows):
+        row = tkinter.Frame(window)
+        num_desks = len(rows_of_desks[i])
+
+        for j in range(num_desks):
+            desk_count += 1
+            canvas_width = IMAGE_WIDTH / num_desks
+            canvas_height = IMAGE_HEIGHT / num_rows
+            can = tkinter.Canvas(row, bg='white', width=canvas_width, height=canvas_height, highlightbackground='black')
+            can.create_text(canvas_width/2, 25, fill='black', text='Table ' + str(desk_count), font=HEADER)
+            next_y = 50
+            names_at_table = ""
+            # student_groups = []
+            #
+            # maximum_text_length = canvas_width / 2
+
+            for pair in tables[desk_count - 1]:
+                for each in pair:
+                    can.create_text(10, next_y, fill='black', text=each, font=BODY, anchor='w')
+                    next_y += 18
+                next_y += 30
+
+                # temp_stu = person.split(" ")
+                # student = temp_stu[1] + " " + temp_stu[0] + "      "
+                # if get_text_size(names_at_table + student, BODY) < maximum_text_length:
+                #     names_at_table += student
+                # else:
+                #     student_groups.append(names_at_table)
+                #     names_at_table = student
+
+            # if len(student_groups) != 0:
+            #     group_spacing = canvas_height / len(student_groups) *.4
+            #     if group_spacing > 50:
+            #         group_spacing = 50
+            #     for each in student_groups:
+            #         can.create_text(10, next_y, fill='black', text=each, font=BODY, anchor='w')
+            #         next_y += group_spacing
+            can.create_text(10, next_y, fill='black', text=names_at_table.replace('_', ' '), font=BODY, anchor='w')
+            can.pack(side=tkinter.LEFT)
+        row.pack()
+
+
+def irregular_seating_display(room_info, tables, window, reverse):
     """
     This function puts together the image for an irregular lab's seating chart
 
@@ -18,12 +78,10 @@ def seating_display(room_info, tables, window, reverse):
     :param reverse: if this parameter is True, the rows in the image will be reversed
     """
 
-    irregular_room = room_info[1]
     rows_of_desks = room_info[0]
     if reverse:
         tables.reverse()
         rows_of_desks.reverse()
-
 
     num_rows = len(rows_of_desks)
     desk_count = 0
@@ -42,9 +100,7 @@ def seating_display(room_info, tables, window, reverse):
             names_at_table = ""
             student_groups = []
 
-            maximum_text_length = canvas_width - 125
-            if irregular_room:
-                maximum_text_length = canvas_width / 2
+            maximum_text_length = canvas_width / 2
 
             for person in tables[desk_count - 1]:
                 temp_stu = person.split(" ")
