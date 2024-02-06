@@ -36,9 +36,6 @@ def standard_seating_display(room_info, tables, window, reverse):
             can.create_text(canvas_width/2, 25, fill='black', text='Table ' + str(desk_count), font=HEADER)
             next_y = 50
             names_at_table = ""
-            # student_groups = []
-            #
-            # maximum_text_length = canvas_width / 2
 
             for pair in tables[desk_count - 1]:
                 for each in pair:
@@ -46,21 +43,6 @@ def standard_seating_display(room_info, tables, window, reverse):
                     next_y += 18
                 next_y += 30
 
-                # temp_stu = person.split(" ")
-                # student = temp_stu[1] + " " + temp_stu[0] + "      "
-                # if get_text_size(names_at_table + student, BODY) < maximum_text_length:
-                #     names_at_table += student
-                # else:
-                #     student_groups.append(names_at_table)
-                #     names_at_table = student
-
-            # if len(student_groups) != 0:
-            #     group_spacing = canvas_height / len(student_groups) *.4
-            #     if group_spacing > 50:
-            #         group_spacing = 50
-            #     for each in student_groups:
-            #         can.create_text(10, next_y, fill='black', text=each, font=BODY, anchor='w')
-            #         next_y += group_spacing
             can.create_text(10, next_y, fill='black', text=names_at_table.replace('_', ' '), font=BODY, anchor='w')
             can.pack(side=tkinter.LEFT)
         row.pack()
