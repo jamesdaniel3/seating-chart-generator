@@ -19,7 +19,6 @@ def seating_display(room_info, tables, window, reverse):
     :param reverse: if this parameter is True, the rows in the image will be reversed
     """
     standard_room = room_info[1]
-    print(room_info)
     if standard_room:
         standard_seating_display(room_info, tables, window, reverse)
     else:
