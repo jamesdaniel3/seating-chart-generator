@@ -6,6 +6,17 @@ IMAGE_HEIGHT = 800
 IMAGE_WIDTH = 1200
 
 def seating_display(room_info, tables, window, reverse):
+    """
+    This function takes in the information needed to form a regular and irregular seating chart and then calls the
+    appropriate function.
+
+    :param room_info: a tuple containing a given rooms information where the first value is a nested list where each
+                        sublist represents a row in the room and each value contains the number of students that can
+                        fit at a table and the second value is a boolean value that indicates whether the room is standard
+    :param tables: a nested list of tables where each table is a list of student names
+    :param window: the window object created by tkinter
+    :param reverse: if this parameter is True, the rows in the image will be reversed
+    """
     standard_room = room_info[1]
     print(room_info)
     if standard_room:
@@ -16,6 +27,16 @@ def seating_display(room_info, tables, window, reverse):
 
 
 def standard_seating_display(room_info, tables, window, reverse):
+    """
+    This function puts together and displays the image for a standard lab's seating chart
+
+    :param room_info: a tuple containing a given rooms information where the first value is a nested list where each
+                        sublist represents a row in the room and each value contains the number of students that can
+                        fit at a table and the second value is a boolean value that indicates whether the room is standard
+    :param tables: a nested list of tables where each table is a list of student names
+    :param window: the window object created by tkinter
+    :param reverse: if this parameter is True, the rows in the image will be reversed
+    """
     rows_of_desks = room_info[0]
     if reverse:
         tables.reverse()
@@ -50,7 +71,7 @@ def standard_seating_display(room_info, tables, window, reverse):
 
 def irregular_seating_display(room_info, tables, window, reverse):
     """
-    This function puts together the image for an irregular lab's seating chart
+    This function puts together and displays the image for an irregular lab's seating chart
 
     :param room_info: a tuple containing a given rooms information where the first value is a nested list where each
                         sublist represents a row in the room and each value contains the number of students that can

@@ -123,6 +123,7 @@ def unnest_desk_list(nested_desk_list):
     """
     This function is meant to take a desk list like those in the ROOM_INFO dicts and break it into a single list
     where each value represents the number of students that a desk can hold.
+
     :param nested_desk_list: a desk list like those in the ROOM_INFO dicts
     :return: a list where each value represents the number of students that a desk can hold.
     """
@@ -137,6 +138,7 @@ def create_student_pairs(nested_desk_list):
     This function adds a level of nesting to the tables created in seating selection that puts students with the student
     or students that they should be working with. It is only intended to be used for regular spacing as students will
     not be listed with their partner in irregular rooms.
+
     :param nested_desk_list: a nested list of tables where each element is a list of students
     :return: a twice-nested list of tables where each element is list containing 1-3 sub lists, and each sublist contains
                         2-3 students that should be paired
