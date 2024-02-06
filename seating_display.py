@@ -62,7 +62,10 @@ def standard_seating_display(room_info, tables, window, reverse):
                 for each in pair:
                     can.create_text(10, next_y, fill='black', text=each, font=BODY, anchor='w')
                     next_y += 18
-                next_y += 30
+                group_spacing = canvas_height / len(tables[desk_count - 1]) * .4
+                if group_spacing > 30:
+                    group_spacing = 30
+                next_y += group_spacing
 
             can.create_text(10, next_y, fill='black', text=names_at_table.replace('_', ' '), font=BODY, anchor='w')
             can.pack(side=tkinter.LEFT)
