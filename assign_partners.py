@@ -7,7 +7,7 @@ import save_image
 import platform
 
 
-roster_file = 'testing_roster.csv'
+roster_file = 'S24_lab_roster.csv'
 REVERSE = False
 DOWNLOAD = False
 SYSTEM_PLATFORM = platform.system()
@@ -34,6 +34,7 @@ seating_display.seating_display(current_room_info, tables, win, REVERSE)
 
 
 if DOWNLOAD:
-        win.geometry(str(win.winfo_width())+"x"+str(win.winfo_height())+"+0+0")
+        win.after(1000, lambda: save_image.take_screenshot(win, SYSTEM_PLATFORM))
+
 
 win.mainloop()
