@@ -34,6 +34,7 @@ def take_screenshot(window, system_platform, file_path="seating_chart.png"):
     :param file_path: the location where the user would like to save the image
     """
     window.update()
+    window.geometry(str(window.winfo_width()) + "x" + str(window.winfo_height()) + "+0+0")
     x = window.winfo_rootx()
     y = window.winfo_rooty()
     width = window.winfo_width()
@@ -41,7 +42,6 @@ def take_screenshot(window, system_platform, file_path="seating_chart.png"):
 
     check_required_packages()
     if system_platform == 'Windows':
-        check_required_packages()
         screenshot = pyautogui.screenshot(region=(x, y, width, height))
         screenshot.save(file_path)
     elif system_platform == 'Darwin':  # macOS
