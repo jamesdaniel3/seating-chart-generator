@@ -41,6 +41,7 @@ def take_screenshot(window, system_platform, file_path="seating_chart.png"):
 
     check_required_packages()
     if system_platform == 'Windows':
+        check_required_packages()
         screenshot = pyautogui.screenshot(region=(x, y, width, height))
         screenshot.save(file_path)
     elif system_platform == 'Darwin':  # macOS
