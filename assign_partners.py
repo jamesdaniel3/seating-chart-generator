@@ -7,7 +7,7 @@ import save_image
 import platform
 
 
-roster_file = 'S24_lab_roster.csv'
+roster_file = 'generated_students.csv'
 REVERSE = False
 DOWNLOAD = False
 SYSTEM_PLATFORM = platform.system()
