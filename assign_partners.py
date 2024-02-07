@@ -34,6 +34,6 @@ seating_display.seating_display(current_room_info, tables, win, REVERSE)
 
 
 if DOWNLOAD:
-        save_image.take_screenshot(win, SYSTEM_PLATFORM)
+        win.geometry(str(win.winfo_width())+"x"+str(win.winfo_height())+"+0+0")
 
 win.mainloop()
