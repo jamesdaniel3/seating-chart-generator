@@ -3,10 +3,22 @@ import tkinter
 import seating_selection
 import seating_display
 import roster_parsing
+import save_image
+import platform
 
-roster_file = 'generated_students.csv'
 
-REVERSE = len(argv) >= 3 and (argv[2] == "-r" or argv[2] == "--reverse")
+roster_file = 'testing_roster.csv'
+REVERSE = False
+DOWNLOAD = False
+SYSTEM_PLATFORM = platform.system()
+
+if len(argv) >= 3:
+    for argument in argv:
+        if "-r" in argument or "--reverse" in argument:
+            REVERSE = True
+        if "-d" in argument or "--download" in argument:
+            DOWNLOAD = True
+
 
 data = roster_parsing.read_csv(roster_file)
 
@@ -20,5 +32,8 @@ win.title('Lab ' + argv[1])
 tables = seating_selection.seating_selection(current_room_info, students)
 seating_display.seating_display(current_room_info, tables, win, REVERSE)
 
-win.mainloop()
 
+if DOWNLOAD:
+        save_image.take_screenshot(win, SYSTEM_PLATFORM)
+
+win.mainloop()
