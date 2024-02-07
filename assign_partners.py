@@ -3,9 +3,10 @@ import tkinter
 import seating_selection
 import seating_display
 import roster_parsing
+import check_necessary_packages
 import platform
-import pyautogui
 import subprocess
+import pyautogui
 
 roster_file = 'testing_roster.csv'
 REVERSE = False
@@ -39,15 +40,17 @@ y = win.winfo_rooty() + win.winfo_y()
 width = x + win.winfo_width()
 height = y + win.winfo_height()
 
-if SYSTEM_PLATFORM == 'Windows':
-    screenshot = pyautogui.screenshot(region=(x, y, width, height))
-    screenshot.save("seating_chart.png")
-elif SYSTEM_PLATFORM == 'Darwin':  # macOS
-    subprocess.run(["screencapture", "-R", f"{x},{y},{width},{height}", "seating_chart.png"])
-elif SYSTEM_PLATFORM == 'Linux':
-    subprocess.run(["scrot", "-u", "-o", "seating_chart.png", "-s"])
-else:
-    print("Unsupported operating system for downloads")
+if DOWNLOAD:
+    check_necessary_packages.check_required_packages()
+    if SYSTEM_PLATFORM == 'Windows':
+        screenshot = pyautogui.screenshot(region=(x, y, width, height))
+        screenshot.save("seating_chart.png")
+    elif SYSTEM_PLATFORM == 'Darwin':  # macOS
+        subprocess.run(["screencapture", "-R", f"{x},{y},{width},{height}", "seating_chart.png"])
+    elif SYSTEM_PLATFORM == 'Linux':
+        subprocess.run(["scrot", "-u", "-o", "seating_chart.png", "-s"])
+    else:
+        print("Unsupported operating system for downloads")
 
 
 win.mainloop()
