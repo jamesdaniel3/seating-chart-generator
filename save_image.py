@@ -15,7 +15,7 @@ def check_required_packages():
         import pyautogui  # Now import again after installation
 
 
-def take_screenshot(window, system_platform):
+def take_screenshot(window, system_platform, file_path="seating_chart.png"):
     window.update()
     x = window.winfo_rootx()
     y = window.winfo_rooty()
@@ -25,10 +25,10 @@ def take_screenshot(window, system_platform):
     check_required_packages()
     if system_platform == 'Windows':
         screenshot = pyautogui.screenshot(region=(x, y, width, height))
-        screenshot.save("seating_chart.png")
+        screenshot.save(file_path)
     elif system_platform == 'Darwin':  # macOS
-        subprocess.run(["screencapture", "-R", f"{x},{y},{width},{height}", "seating_chart.png"])
+        subprocess.run(["screencapture", "-R", f"{x},{y},{width},{height}", file_path])
     elif system_platform == 'Linux':
-        subprocess.run(["scrot", "-u", "-o", "seating_chart.png", "-s"])
+        subprocess.run(["scrot", "-u", "-o", file_path, "-s"])
     else:
         print("Unsupported operating system for downloads")
