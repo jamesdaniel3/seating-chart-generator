@@ -17,10 +17,10 @@ def check_required_packages():
 
 def take_screenshot(window, system_platform):
     window.update()
-    x = window.winfo_rootx() + window.winfo_x()
-    y = window.winfo_rooty() + window.winfo_y()
-    width = x + window.winfo_width()
-    height = y + window.winfo_height()
+    x = window.winfo_rootx()
+    y = window.winfo_rooty()
+    width = window.winfo_width()
+    height = window.winfo_height()
 
     check_required_packages()
     if system_platform == 'Windows':
