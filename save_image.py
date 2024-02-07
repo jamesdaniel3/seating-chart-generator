@@ -10,9 +10,9 @@ def check_required_packages():
     try:
         import pyautogui
     except ImportError:
-        print(f"Required package '{required_package}' is not installed. Installing it now...")
+        print("Required package " + required_package + " is not installed. Installing it now...")
         install_package(required_package)
-        import pyautogui  # Now import again after installation
+        import pyautogui
 
 
 def take_screenshot(window, system_platform, file_path="seating_chart.png"):
