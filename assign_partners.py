@@ -3,10 +3,9 @@ import tkinter
 import seating_selection
 import seating_display
 import roster_parsing
-import check_necessary_packages
+import save_image
 import platform
-import subprocess
-import pyautogui
+
 
 roster_file = 'testing_roster.csv'
 REVERSE = False
@@ -34,24 +33,7 @@ tables = seating_selection.seating_selection(current_room_info, students)
 seating_display.seating_display(current_room_info, tables, win, REVERSE)
 
 
-win.update()
-x = win.winfo_rootx() + win.winfo_x()
-y = win.winfo_rooty() + win.winfo_y()
-width = x + win.winfo_width()
-height = y + win.winfo_height()
-
 if DOWNLOAD:
-    check_necessary_packages.check_required_packages()
-    if SYSTEM_PLATFORM == 'Windows':
-        screenshot = pyautogui.screenshot(region=(x, y, width, height))
-        screenshot.save("seating_chart.png")
-    elif SYSTEM_PLATFORM == 'Darwin':  # macOS
-        subprocess.run(["screencapture", "-R", f"{x},{y},{width},{height}", "seating_chart.png"])
-    elif SYSTEM_PLATFORM == 'Linux':
-        subprocess.run(["scrot", "-u", "-o", "seating_chart.png", "-s"])
-    else:
-        print("Unsupported operating system for downloads")
-
+    save_image.take_screenshot(win, SYSTEM_PLATFORM)
 
 win.mainloop()
-
