@@ -4,9 +4,16 @@ import seating_selection
 import seating_display
 import roster_parsing
 
-roster_file = 'generated_students.csv'
+roster_file = 'testing_roster.csv'
+REVERSE = False
+DOWNLOAD = False
 
-REVERSE = len(argv) >= 3 and (argv[2] == "-r" or argv[2] == "--reverse")
+if len(argv) >= 3:
+    for argument in argv:
+        if "-r" in argument or "--reverse" in argument:
+            REVERSE = True
+        if "-d" in argument or "--download" in argument:
+            DOWNLOAD = True
 
 data = roster_parsing.read_csv(roster_file)
 
@@ -19,6 +26,13 @@ win.title('Lab ' + argv[1])
 
 tables = seating_selection.seating_selection(current_room_info, students)
 seating_display.seating_display(current_room_info, tables, win, REVERSE)
+
+# win.update()
+# x = win.winfo_rootx() + win.winfo_x()
+# y = win.winfo_rooty() + win.winfo_y()
+# x1 = x + win.winfo_width()
+# y1 = y + win.winfo_height()
+
 
 win.mainloop()
 
